@@ -1,11 +1,11 @@
-'use client';
-
+"use client"
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { getTasks, toggleTaskCompletion, deleteTask } from '@/services/tasks';
 import { getUserIdFromToken, logoutUser } from '@/lib/auth';
 import TaskList from '@/components/task-list'; // Assuming TaskList component exists
+import LogoutButton from '@/components/LogoutButton'; // Import LogoutButton
 
 interface Task {
   id: number;
@@ -72,10 +72,11 @@ export default function TasksPage() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Your Tasks</h1>
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-end mb-4 space-x-4"> {/* Added space-x-4 for spacing */}
         <Link href="/tasks/create" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
           Create New Task
         </Link>
+        <LogoutButton /> {/* Placed LogoutButton here */}
       </div>
       {tasks.length === 0 ? (
         <p className="text-center text-gray-600">You have no tasks. Start by creating one!</p>
